@@ -44,7 +44,6 @@
   </div>
 
   <div class="category-layout">
-
     <aside class="filters-panel">
       <div class="filters-title">
         Фільтри
@@ -133,11 +132,10 @@
         </a>
 
         <a href="product.html" class="product-card"
-          data-cat="Миші" data-brand="Zowie" data-price="99" data-rating="4.8" data-conn="Дротова"
-          data-name="Zowie EC2-CW">
+           data-cat="Миші" data-brand="Zowie" data-price="99" data-rating="4.8" data-conn="Дротова"
+           data-name="Zowie EC2-CW">
           <div class="product-img-wrap">
-          <img src="images/mouse3.png" alt="Zowie EC2-CW" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="product-placeholder" style="display:none">🖱️</div>
+            <div class="product-placeholder">🖱️</div>
           </div>
           <div class="product-name">Zowie EC2-CW</div>
           <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8/5</span></div>
@@ -217,11 +215,10 @@
         </a>
 
         <a href="product.html" class="product-card"
-          data-cat="Миші" data-brand="Razer" data-price="149" data-rating="4.7" data-conn="Бездротова"
-          data-name="Razer Viper V3 Pro">
+           data-cat="Миші" data-brand="Razer" data-price="149" data-rating="4.7" data-conn="Бездротова"
+           data-name="Razer Viper V3 Pro">
           <div class="product-img-wrap">
-            <img src="images/mouse5.png" alt="Razer Viper V3 Pro" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-            <div class="product-placeholder" style="display:none">🖱️</div>
+            <div class="product-placeholder">🖱️</div>
           </div>
           <div class="product-name">Razer Viper V3 Pro</div>
           <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-num">4.7/5</span></div>
@@ -229,28 +226,26 @@
         </a>
 
         <a href="product.html" class="product-card"
-        data-cat="Миші" data-brand="HyperX" data-price="49" data-rating="4.8" data-conn="Дротова"
-        data-name="HyperX Pulsefire Haste 2">
-        <div class="product-img-wrap">
-          <img src="images/mouse8.png" alt="HyperX Pulsefire Haste 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="product-placeholder" style="display:none">🖱️</div>
-        </div>
-        <div class="product-name">HyperX Pulsefire Haste 2</div>
-        <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8/5</span></div>
-        <div class="product-price"><span class="price">$49</span><span class="price-old">$59</span><span class="badge-sale">-17%</span></div>
-      </a>
+           data-cat="Миші" data-brand="HyperX" data-price="49" data-rating="4.8" data-conn="Дротова"
+           data-name="HyperX Pulsefire Haste 2">
+          <div class="product-img-wrap">
+            <div class="product-placeholder">🖱️</div>
+          </div>
+          <div class="product-name">HyperX Pulsefire Haste 2</div>
+          <div class="product-rating"><span class="stars">★★★★★</span><span class="rating-num">4.8/5</span></div>
+          <div class="product-price"><span class="price">$49</span><span class="price-old">$59</span><span class="badge-sale">-17%</span></div>
+        </a>
 
-      <a href="product.html" class="product-card"
-        data-cat="Клавіатури" data-brand="Razer" data-price="109" data-rating="4.6" data-conn="Бездротова"
-        data-name="Razer BlackWidow V4 Pro">
-        <div class="product-img-wrap">
-          <img src="images/keyboard3.png" alt="Razer BlackWidow V4 Pro" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="product-placeholder" style="display:none">⌨️</div>
-        </div>
-        <div class="product-name">Razer BlackWidow V4 Pro</div>
-        <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-num">4.6/5</span></div>
-        <div class="product-price"><span class="price">$109</span></div>
-      </a>
+        <a href="product.html" class="product-card"
+           data-cat="Клавіатури" data-brand="Razer" data-price="109" data-rating="4.6" data-conn="Бездротова"
+           data-name="Razer BlackWidow V4 Pro">
+          <div class="product-img-wrap">
+            <div class="product-placeholder">⌨️</div>
+          </div>
+          <div class="product-name">Razer BlackWidow V4 Pro</div>
+          <div class="product-rating"><span class="stars">★★★★☆</span><span class="rating-num">4.6/5</span></div>
+          <div class="product-price"><span class="price">$109</span></div>
+        </a>
 
       </div>
 
@@ -391,10 +386,10 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       const params = new URLSearchParams(window.location.search);
+
       const q = params.get('search');
-      if (q) {
-        document.getElementById('searchInput').value = q;
-      }
+      if (q) document.getElementById('searchInput').value = q;
+
       const cat = params.get('cat');
       if (cat) {
         document.querySelectorAll('.filter-cat').forEach(cb => {
@@ -403,7 +398,49 @@
         document.getElementById('breadcrumbCat').textContent = cat;
         document.getElementById('catalogTitle').textContent  = cat;
       }
-      filterProducts();
+
+      const brand = params.get('brand');
+      if (brand) {
+        document.querySelectorAll('.filter-brand').forEach(cb => {
+          if (cb.value === brand) cb.checked = true;
+        });
+        document.getElementById('breadcrumbCat').textContent = brand;
+        document.getElementById('catalogTitle').textContent  = 'Бренд: ' + brand;
+      }
+
+      setTimeout(() => filterProducts(), 0);
+
+      document.querySelectorAll('#catalogGrid .product-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+          e.preventDefault();
+          const imgEl  = this.querySelector('.product-img-wrap img');
+          const priceEl    = this.querySelector('.price');
+          const priceOldEl = this.querySelector('.price-old');
+          const saleEl     = this.querySelector('.badge-sale');
+          const stars  = this.querySelector('.stars')?.textContent || '★★★★★';
+          const rnum   = this.querySelector('.rating-num')?.textContent || '5.0/5';
+
+          let imgSrc = '';
+          if (imgEl) {
+            try { imgSrc = new URL(imgEl.src).pathname.replace(/^\//, ''); }
+            catch { imgSrc = imgEl.getAttribute('src') || ''; }
+          }
+
+          const p = new URLSearchParams({
+            name:     this.dataset.name  || '',
+            price:    priceEl?.textContent.replace('$','') || this.dataset.price || '',
+            priceOld: priceOldEl?.textContent.replace('$','') || '',
+            sale:     saleEl?.textContent || '',
+            brand:    this.dataset.brand || '',
+            cat:      this.dataset.cat   || '',
+            rating:   this.dataset.rating || '',
+            img:      imgSrc,
+            stars,
+            rnum,
+          });
+          window.location.href = 'product.html?' + p.toString();
+        });
+      });
     });
   </script>
 </body>
